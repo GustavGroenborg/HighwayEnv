@@ -30,6 +30,10 @@ def _register_highway_envs():
         entry_point="highway_env.envs:Stovring",
     )
     register(
+        id="WeightedTwoWay",
+        entry_point="highway_env.envs:WeightedTwoWayEnv"
+    )
+    register(
         id="template",
         entry_point="highway_env.envs:Template"
     )
