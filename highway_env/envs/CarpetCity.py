@@ -96,6 +96,7 @@ class CarpetCity(AbstractEnv):
                     np.deg2rad(alpha),
                     clockwise=False,
                     line_types=line[lane],
+                    speed_limit=40,
                 ),
                 nb.get_weight(15.7, 50),
                 LaneType.ROUNDABOUT
@@ -110,6 +111,7 @@ class CarpetCity(AbstractEnv):
                     np.deg2rad(-alpha),
                     clockwise=False,
                     line_types=line[lane],
+                    speed_limit=40,
                 ),
                 nb.get_weight(15.7, 50),
                 LaneType.ROUNDABOUT
@@ -124,6 +126,7 @@ class CarpetCity(AbstractEnv):
                     np.deg2rad(-90 + alpha),
                     clockwise=False,
                     line_types=line[lane],
+                    speed_limit=40,
                 ),
                 nb.get_weight(15.7, 50),
                 LaneType.ROUNDABOUT
@@ -138,6 +141,7 @@ class CarpetCity(AbstractEnv):
                     np.deg2rad(-90 - alpha),
                     clockwise=False,
                     line_types=line[lane],
+                    speed_limit=40,
                 ),
                 nb.get_weight(15.7, 50),
                 LaneType.ROUNDABOUT
@@ -152,6 +156,7 @@ class CarpetCity(AbstractEnv):
                     np.deg2rad(-180 + alpha),
                     clockwise=False,
                     line_types=line[lane],
+                    speed_limit=40,
                 ),
                 nb.get_weight(15.7, 50),
                 LaneType.ROUNDABOUT
@@ -166,6 +171,7 @@ class CarpetCity(AbstractEnv):
                     np.deg2rad(-180 - alpha),
                     clockwise=False,
                     line_types=line[lane],
+                    speed_limit=40,
                 ),
                 nb.get_weight(15.7, 50),
                 LaneType.ROUNDABOUT
@@ -180,6 +186,7 @@ class CarpetCity(AbstractEnv):
                     np.deg2rad(90 + alpha),
                     clockwise=False,
                     line_types=line[lane],
+                    speed_limit=40,
                 ),
                 nb.get_weight(15.7, 50),
                 LaneType.ROUNDABOUT
@@ -194,6 +201,7 @@ class CarpetCity(AbstractEnv):
                     np.deg2rad(90 - alpha),
                     clockwise=False,
                     line_types=line[lane],
+                    speed_limit=40,
                 ),
                 nb.get_weight(15.7, 50),
                 LaneType.ROUNDABOUT
@@ -217,7 +225,8 @@ class CarpetCity(AbstractEnv):
                 [2, 150],
                 [2, dev / 2],
                 line_types=(s, c),
-                priority=3
+                priority=3,
+                speed_limit=40,
             ),
             nb.get_weight(107.5, 50),
             LaneType.CITY_ROAD
@@ -233,6 +242,7 @@ class CarpetCity(AbstractEnv):
                 w,
                 -np.pi / 2,
                 line_types=(c, c),
+                speed_limit=40,
             ),
             nb.get_weight(18, 50),
             LaneType.ROUNDABOUT
@@ -248,6 +258,7 @@ class CarpetCity(AbstractEnv):
                 w,
                 -np.pi / 2 + w * delta_en,
                 line_types=(c, c),
+                speed_limit=40,
             ),
             nb.get_weight(18, 50),
             LaneType.ROUNDABOUT
@@ -260,7 +271,8 @@ class CarpetCity(AbstractEnv):
                 [-2, dev / 2],
                 [-2, 150],
                 line_types=(n, c),
-                priority=3
+                priority=3,
+                speed_limit=40,
             ),
             nb.get_weight(107.5, 50),
             LaneType.CITY_ROAD
@@ -274,7 +286,8 @@ class CarpetCity(AbstractEnv):
                 [300, -2],
                 [dev / 2, -2],
                 line_types=(s, c),
-                priority=3
+                priority=3,
+                speed_limit=40,
             ),
             nb.get_weight(107.5, 50),
             LaneType.CITY_ROAD
@@ -290,6 +303,7 @@ class CarpetCity(AbstractEnv):
                 w,
                 -np.pi / 2,
                 line_types=(c, c),
+                speed_limit=40,
             ),
             nb.get_weight(18, 50),
             LaneType.ROUNDABOUT
@@ -305,6 +319,7 @@ class CarpetCity(AbstractEnv):
                 w,
                 -np.pi / 2 + w * delta_en,
                 line_types=(c, c),
+                speed_limit=40,
             ),
             nb.get_weight(18, 50),
             LaneType.ROUNDABOUT
@@ -317,7 +332,8 @@ class CarpetCity(AbstractEnv):
                 [dev / 2, 2],
                 [300, 2],
                 line_types=(n, c),
-                priority=3
+                priority=3,
+                speed_limit=40,
             ),
             nb.get_weight(107.5, 50),
             LaneType.CITY_ROAD
@@ -331,7 +347,8 @@ class CarpetCity(AbstractEnv):
                 [-2, -200],
                 [-2, -dev / 2],
                 line_types=(s, c),
-                priority=3
+                priority=3,
+                speed_limit=40,
             ),
             nb.get_weight(107.5, 50),
             LaneType.CITY_ROAD
@@ -347,6 +364,7 @@ class CarpetCity(AbstractEnv):
                 w,
                 -np.pi / 2,
                 line_types=(c, c),
+                speed_limit=40,
             ),
             nb.get_weight(18, 50),
             LaneType.ROUNDABOUT
@@ -362,6 +380,7 @@ class CarpetCity(AbstractEnv):
                 w,
                 -np.pi / 2 + w * delta_en,
                 line_types=(c, c),
+                speed_limit=40,
             ),
             nb.get_weight(18, 50),
             LaneType.ROUNDABOUT
@@ -374,7 +393,8 @@ class CarpetCity(AbstractEnv):
                 [2, -dev / 2],
                 [2, -200],
                 line_types=(n, c),
-                priority=3
+                priority=3,
+                speed_limit=40,
             ),
             nb.get_weight(107.5, 50),
             LaneType.CITY_ROAD
@@ -388,7 +408,8 @@ class CarpetCity(AbstractEnv):
                 [-116, 2],
                 [-dev / 2, 2],
                 line_types=(s, c),
-                priority=3
+                priority=3,
+                speed_limit=40,
             ),
             nb.get_weight(107.5, 50),
             LaneType.CITY_ROAD
@@ -404,6 +425,7 @@ class CarpetCity(AbstractEnv):
                 w,
                 -np.pi / 2,
                 line_types=(c, c),
+                speed_limit=40,
             ),
             nb.get_weight(18, 50),
             LaneType.ROUNDABOUT
@@ -419,6 +441,7 @@ class CarpetCity(AbstractEnv):
                 w,
                 -np.pi / 2 + w * delta_en,
                 line_types=(c, c),
+                speed_limit=40,
             ),
             nb.get_weight(18, 50),
             LaneType.ROUNDABOUT
@@ -431,7 +454,8 @@ class CarpetCity(AbstractEnv):
                 [-dev / 2, -2],
                 [-116, -2],
                 line_types=(n, c),
-                priority=3
+                priority=3,
+                speed_limit=40,
             ),
             nb.get_weight(107.5, 50),
             LaneType.CITY_ROAD
@@ -913,15 +937,15 @@ class CarpetCity(AbstractEnv):
         
         nb.add_multiple_paths({
             nb.PathType.STRAIGHT : [
-                StraightPath("I-13:s-out", "H-1:n-in:1",  (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("I-13:s-out", "H-1:n-in:2",  (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("H-1:n-out:1", "I-13:s-in",  (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
-                StraightPath("H-1:n-out:2", "I-13:s-in",  (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
+                StraightPath("I-13:s-out", "H-1:n-in:1",  (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("I-13:s-out", "H-1:n-in:2",  (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-1:n-out:1", "I-13:s-in",  (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-1:n-out:2", "I-13:s-in",  (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
                 
-                StraightPath("I-14:n-out", "H-1:s-in:1",  (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("I-14:n-out", "H-1:s-in:2",  (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("H-1:s-out:1", "I-14:n-in",  (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
-                StraightPath("H-1:s-out:2", "I-14:n-in",  (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
+                StraightPath("I-14:n-out", "H-1:s-in:1",  (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("I-14:n-out", "H-1:s-in:2",  (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-1:s-out:1", "I-14:n-in",  (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-1:s-out:2", "I-14:n-in",  (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
                 
                 StraightPath("H-1:n-in:1", "H-1:s-out:1", (n,c), nb.get_weight(260, 130), LaneType.HIGHWAY),
                 StraightPath("H-1:n-in:2", "H-1:s-out:2", (c,s), nb.get_weight(260, 130), LaneType.HIGHWAY),
@@ -950,10 +974,10 @@ class CarpetCity(AbstractEnv):
         
         nb.add_multiple_paths({
             nb.PathType.STRAIGHT : [
-                StraightPath("I-14:s-out", "H-2:n-in:1", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("I-14:s-out", "H-2:n-in:2", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("H-2:n-out:1", "I-14:s-in",   (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
-                StraightPath("H-2:n-out:2", "I-14:s-in",   (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
+                StraightPath("I-14:s-out", "H-2:n-in:1", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("I-14:s-out", "H-2:n-in:2", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-2:n-out:1", "I-14:s-in",   (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-2:n-out:2", "I-14:s-in",   (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
 
                 StraightPath("H-2:n-in:1", "T-6:n-in:1", (s,c), nb.get_weight(270, 130), LaneType.HIGHWAY),
                 StraightPath("H-2:n-in:2", "T-6:n-in:2", (c,n), nb.get_weight(270, 130), LaneType.HIGHWAY),
@@ -1000,10 +1024,10 @@ class CarpetCity(AbstractEnv):
                 StraightPath("H-3:e-in:2", "T-6:e-in:2",   (c,s), nb.get_weight(574, 130), LaneType.HIGHWAY),
                 StraightPath("H-3:e-in:1", "T-6:e-in:1",   (n,c), nb.get_weight(574, 130), LaneType.HIGHWAY),
 
-                StraightPath("I-15:w-out", "H-3:e-in:1", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("I-15:w-out", "H-3:e-in:2", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("H-3:e-out:1", "I-15:w-in", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
-                StraightPath("H-3:e-out:2", "I-15:w-in", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
+                StraightPath("I-15:w-out", "H-3:e-in:1", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("I-15:w-out", "H-3:e-in:2", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-3:e-out:1", "I-15:w-in", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-3:e-out:2", "I-15:w-in", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
             ]
         })
         
@@ -1040,10 +1064,10 @@ class CarpetCity(AbstractEnv):
         
         nb.add_multiple_paths({
             nb.PathType.STRAIGHT : [
-                StraightPath("I-15:e-out", "H-4:w-in:1", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("I-15:e-out", "H-4:w-in:2", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("H-4:w-out:1", "I-15:e-in", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
-                StraightPath("H-4:w-out:2", "I-15:e-in", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
+                StraightPath("I-15:e-out", "H-4:w-in:1", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("I-15:e-out", "H-4:w-in:2", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-4:w-out:1", "I-15:e-in", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-4:w-out:2", "I-15:e-in", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
 
                 StraightPath("H-4:w-in:1", "T-7:w-in:1",   (n,c), nb.get_weight(148, 130), LaneType.HIGHWAY),
                 StraightPath("H-4:w-in:2", "T-7:w-in:2",   (c,s), nb.get_weight(148, 130), LaneType.HIGHWAY),
@@ -1086,10 +1110,10 @@ class CarpetCity(AbstractEnv):
         
         nb.add_multiple_paths({
             nb.PathType.STRAIGHT : [
-                StraightPath("I-16:s-out", "H-5:n-in:1", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("I-16:s-out", "H-5:n-in:2", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("H-5:n-out:1", "I-16:s-in", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
-                StraightPath("H-5:n-out:2", "I-16:s-in", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
+                StraightPath("I-16:s-out", "H-5:n-in:1", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("I-16:s-out", "H-5:n-in:2", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-5:n-out:1", "I-16:s-in", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-5:n-out:2", "I-16:s-in", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
 
                 StraightPath("T-7:n-out:1", "H-5:n-out:1", (n,c), nb.get_weight(574, 130), LaneType.HIGHWAY),
                 StraightPath("T-7:n-out:2", "H-5:n-out:2", (c,s), nb.get_weight(574, 130), LaneType.HIGHWAY),
@@ -1136,15 +1160,15 @@ class CarpetCity(AbstractEnv):
         
         nb.add_multiple_paths({
             nb.PathType.STRAIGHT : [
-                StraightPath("I-16:n-out", "H-6:s-in:1",  (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("I-16:n-out", "H-6:s-in:2",  (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("H-6:s-out:1", "I-16:n-in",  (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
-                StraightPath("H-6:s-out:2", "I-16:n-in",  (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
+                StraightPath("I-16:n-out", "H-6:s-in:1",  (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("I-16:n-out", "H-6:s-in:2",  (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-6:s-out:1", "I-16:n-in",  (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-6:s-out:2", "I-16:n-in",  (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
                 
-                StraightPath("H-6:n-out:1", "I-17:s-in",  (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
-                StraightPath("H-6:n-out:2", "I-17:s-in",  (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
-                StraightPath("I-17:s-out", "H-6:n-in:1",  (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("I-17:s-out", "H-6:n-in:2",  (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
+                StraightPath("H-6:n-out:1", "I-17:s-in",  (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-6:n-out:2", "I-17:s-in",  (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("I-17:s-out", "H-6:n-in:1",  (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("I-17:s-out", "H-6:n-in:2",  (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
                 
                 StraightPath("H-6:s-in:1", "H-6:n-out:1", (n,c), nb.get_weight(218, 130), LaneType.HIGHWAY),
                 StraightPath("H-6:s-in:2", "H-6:n-out:2", (c,s), nb.get_weight(218, 130), LaneType.HIGHWAY),
@@ -1191,15 +1215,15 @@ class CarpetCity(AbstractEnv):
         
         nb.add_multiple_paths({
             nb.PathType.STRAIGHT : [
-                StraightPath("I-17:n-out", "H-7:s-in:1",  (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("I-17:n-out", "H-7:s-in:2",  (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("H-7:s-out:1", "I-17:n-in",  (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
-                StraightPath("H-7:s-out:2", "I-17:n-in",  (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
+                StraightPath("I-17:n-out", "H-7:s-in:1",  (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("I-17:n-out", "H-7:s-in:2",  (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-7:s-out:1", "I-17:n-in",  (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-7:s-out:2", "I-17:n-in",  (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
                 
-                StraightPath("H-7:n-out:1", "I-18:s-in",  (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
-                StraightPath("H-7:n-out:2", "I-18:s-in",  (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
-                StraightPath("I-18:s-out", "H-7:n-in:1",  (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("I-18:s-out", "H-7:n-in:2",  (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
+                StraightPath("H-7:n-out:1", "I-18:s-in",  (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-7:n-out:2", "I-18:s-in",  (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("I-18:s-out", "H-7:n-in:1",  (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("I-18:s-out", "H-7:n-in:2",  (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
                 
                 StraightPath("H-7:s-in:1", "H-7:n-out:1", (n,c), nb.get_weight(218, 130), LaneType.HIGHWAY),
                 StraightPath("H-7:s-in:2", "H-7:n-out:2", (c,s), nb.get_weight(218, 130), LaneType.HIGHWAY),
@@ -1241,10 +1265,10 @@ class CarpetCity(AbstractEnv):
         
         nb.add_multiple_paths({
             nb.PathType.STRAIGHT : [
-                StraightPath("I-18:n-out", "H-8:s-in:1", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("I-18:n-out", "H-8:s-in:2", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("H-8:s-out:1", "I-18:n-in", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
-                StraightPath("H-8:s-out:2", "I-18:n-in", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
+                StraightPath("I-18:n-out", "H-8:s-in:1", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("I-18:n-out", "H-8:s-in:2", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-8:s-out:1", "I-18:n-in", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-8:s-out:2", "I-18:n-in", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
 
                 StraightPath("H-8:s-in:1", "T-8:s-in:1",   (n,c), nb.get_weight(236, 130), LaneType.HIGHWAY),
                 StraightPath("H-8:s-in:2", "T-8:s-in:2",   (c,s), nb.get_weight(236, 130), LaneType.HIGHWAY),
@@ -1287,10 +1311,10 @@ class CarpetCity(AbstractEnv):
         
         nb.add_multiple_paths({
             nb.PathType.STRAIGHT : [
-                StraightPath("I-19:e-out", "H-9:w-in:1", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("I-19:e-out", "H-9:w-in:2", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("H-9:w-out:1", "I-19:e-in", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
-                StraightPath("H-9:w-out:2", "I-19:e-in", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
+                StraightPath("I-19:e-out", "H-9:w-in:1", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("I-19:e-out", "H-9:w-in:2", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-9:w-out:1", "I-19:e-in", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-9:w-out:2", "I-19:e-in", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
 
                 StraightPath("T-8:w-out:1", "H-9:w-out:1", (n,c), nb.get_weight(278, 130), LaneType.HIGHWAY),
                 StraightPath("T-8:w-out:2", "H-9:w-out:2", (c,s), nb.get_weight(278, 130), LaneType.HIGHWAY),
@@ -1337,15 +1361,15 @@ class CarpetCity(AbstractEnv):
         
         nb.add_multiple_paths({
             nb.PathType.STRAIGHT : [
-                StraightPath("I-19:w-out", "H-10:e-in:1", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("I-19:w-out", "H-10:e-in:2", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("H-10:e-out:1", "I-19:w-in", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
-                StraightPath("H-10:e-out:2", "I-19:w-in", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
+                StraightPath("I-19:w-out", "H-10:e-in:1", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("I-19:w-out", "H-10:e-in:2", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-10:e-out:1", "I-19:w-in", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-10:e-out:2", "I-19:w-in", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
                 
-                StraightPath("I-20:e-out", "H-10:w-in:1", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("I-20:e-out", "H-10:w-in:2", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("H-10:w-out:1", "I-20:e-in", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
-                StraightPath("H-10:w-out:2", "I-20:e-in", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
+                StraightPath("I-20:e-out", "H-10:w-in:1", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("I-20:e-out", "H-10:w-in:2", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-10:w-out:1", "I-20:e-in", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-10:w-out:2", "I-20:e-in", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
 
                 StraightPath("H-10:e-in:1", "H-10:w-out:1", (n,c), nb.get_weight(14, 130), LaneType.HIGHWAY),
                 StraightPath("H-10:e-in:2", "H-10:w-out:2", (c,s), nb.get_weight(14, 130), LaneType.HIGHWAY),
@@ -1387,10 +1411,10 @@ class CarpetCity(AbstractEnv):
         
         nb.add_multiple_paths({
             nb.PathType.STRAIGHT : [
-                StraightPath("I-20:w-out", "H-11:e-in:1", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("I-20:w-out", "H-11:e-in:2", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("H-11:e-out:1", "I-20:w-in", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
-                StraightPath("H-11:e-out:2", "I-20:w-in", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
+                StraightPath("I-20:w-out", "H-11:e-in:1", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("I-20:w-out", "H-11:e-in:2", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-11:e-out:1", "I-20:w-in", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-11:e-out:2", "I-20:w-in", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
 
                 StraightPath("H-11:e-in:1", "T-9:w-in:1",   (n,c), nb.get_weight(364, 130), LaneType.HIGHWAY),
                 StraightPath("H-11:e-in:2", "T-9:w-in:2",   (c,s), nb.get_weight(364, 130), LaneType.HIGHWAY),
@@ -1433,10 +1457,10 @@ class CarpetCity(AbstractEnv):
         
         nb.add_multiple_paths({
             nb.PathType.STRAIGHT : [
-                StraightPath("I-13:n-out", "H-12:s-in:1", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("I-13:n-out", "H-12:s-in:2", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_ENTRY),
-                StraightPath("H-12:s-out:1", "I-13:n-in", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
-                StraightPath("H-12:s-out:2", "I-13:n-in", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY_EXIT),
+                StraightPath("I-13:n-out", "H-12:s-in:1", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("I-13:n-out", "H-12:s-in:2", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-12:s-out:1", "I-13:n-in", (n,c), nb.get_weight(10, 130), LaneType.HIGHWAY),
+                StraightPath("H-12:s-out:2", "I-13:n-in", (c,s), nb.get_weight(10, 130), LaneType.HIGHWAY),
 
                 StraightPath("T-9:s-out:1", "H-12:s-out:1", (n,c), nb.get_weight(108, 130), LaneType.HIGHWAY),
                 StraightPath("T-9:s-out:2", "H-12:s-out:2", (c,s), nb.get_weight(108, 130), LaneType.HIGHWAY),

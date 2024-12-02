@@ -31,6 +31,7 @@ class RoadNetwork:
     def __init__(self):
         self.graph = {}
 
+
     def add_lane(self, _from: str, _to: str, lane: AbstractLane, weight: int = None, lane_type: LaneType = None) -> None:
         """
         A lane is encoded as an edge in the road network.
@@ -96,7 +97,7 @@ class RoadNetwork:
         :param route: the planned route, if any.
         :param position: the vehicle position.
         :param np_random: a source of randomness.
-        :return: the index of the next lane to be followed when current lane is finished.
+        :return: the index of the next lane to be followed when current lane is finished
         """
         _from, _to, _id = current_index
         next_to = next_id = None
@@ -304,9 +305,10 @@ class RoadNetwork:
         angle: float = 0,
         speed_limit: float = 30,
         nodes_str: tuple[str, str] | None = None,
-        net: RoadNetwork | None = None,
-    ) -> RoadNetwork:
-        net = net or RoadNetwork()
+        net: WeightedRoadnetwork | None = None,
+        weight: int = 1,
+    ) -> WeightedRoadnetwork:
+        net = net or WeightedRoadnetwork()
         nodes_str = nodes_str or ("0", "1")
         for lane in range(lanes):
             origin = np.array([start, lane * StraightLane.DEFAULT_WIDTH])
@@ -322,9 +324,11 @@ class RoadNetwork:
             ]
             net.add_lane(
                 *nodes_str,
-                StraightLane(
+                lane = StraightLane(
                     origin, end, line_types=line_types, speed_limit=speed_limit
                 ),
+                weight = weight,
+                lane_type= LaneType.HIGHWAY
             )
         return net
 
@@ -499,14 +503,14 @@ class WeightedRoadnetwork(RoadNetwork):
                     predecessors[vertex].appendleft(pies.get(vertex))
 
         # Determining the path
-        # TODO: remove debug prints
-        print(f"src: {source}, goal: {goal}\n predecessors: {predecessors}")
         path = deque([goal])
         while path[0] is not source:
             try:
                 node = path[0]
                 path.appendleft(predecessors[node].pop())
             except IndexError:
+                # TODO: remove debug prints
+                print(f"src: {source}, goal: {goal}\n predecessors: {predecessors}")
                 raise PathException(f"could not find path {source} ~> {goal}, attempted to pop from empty list. node: {node}, predecessors: {predecessors}")
 
         return list(path)
