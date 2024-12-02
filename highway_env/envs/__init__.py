@@ -30,6 +30,7 @@ from highway_env.envs.weighted_intersection_env import WeightedIntersectionEnv
 from highway_env.envs.two_way_env import TwoWayEnv
 from highway_env.envs.u_turn_env import UTurnEnv
 from highway_env.envs.weighted_roundabout_env import WeightedRoundaboutEnv
+from highway_env.envs.weighted_two_way import WeightedTwoWayEnv
 
 
 __all__ = [

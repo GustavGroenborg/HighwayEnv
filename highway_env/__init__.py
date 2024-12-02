@@ -31,7 +31,7 @@ def _register_highway_envs():
     )
     register(
         id="WeightedTwoWay",
-        entry_point="highway_env.envs:WeightedTwoWayEnv"
+        entry_point="highway_env.envs:WeightedTwoWayEnv",
     )
     register(
         id="template",
