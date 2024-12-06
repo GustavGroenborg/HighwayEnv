@@ -6,19 +6,19 @@ from typing import Dict, Any
 
 from highway_env.envs.two_way_env import TwoWayEnv
 from highway_env.road.road import Road, WeightedRoadnetwork
-from highway_env.road.lanes import StraightLane, LineType, LaneType
-from highway_env.road.lanes.lane_utils import vec
+from highway_env.road.lanes.unweighted_lanes import StraightLane
+from highway_env.road.lanes.lane_utils import LineType, LaneType
 
 class WeightedTwoWayEnv(TwoWayEnv):
     @override
-    def _create_road(self) -> None:
+    def _make_road(self) -> None:
         """
         Create a weighted road network for the two-way environment.
         """
         net = WeightedRoadnetwork()
         
         # Road parameters
-        length = 200  # Road length
+        length = 1000  # Road length
         width = 4    # Lane width
         
         # Line types
@@ -27,53 +27,53 @@ class WeightedTwoWayEnv(TwoWayEnv):
         
         # Create right lane (primary driving lane)
         net.add_lane(
-            "0", "1",
+            "a", "b",
             StraightLane(
                 [0, -width/2], 
                 [length, -width/2], 
-                line_types=line_types[0],
+                line_types=(n, n),
                 width=width
             ),
             weight=1.0, # Primary lane with higher weight
-            lane_type= Lane_Type.ROAD
+            lane_type= LaneType.ROAD
         )
         
         # Create left lane (counter-flow or overtaking lane)
         net.add_lane(
-            "0", "1", 
+            "a", "b", 
             StraightLane(
                 [0, width/2], 
                 [length, width/2], 
-                line_types=line_types[1],
+                line_types=(s, c),
                 width=width
             ),
             weight=0.8, # Secondary lane with lower weight
-            lane_type= Lane_Type.ROAD
+            lane_type= LaneType.ROAD
         )
         
         # Reverse direction lanes
         net.add_lane(
-            "1", "0",
+            "b", "a",
             StraightLane(
                 [length, -width/2], 
                 [0, -width/2], 
-                line_types=line_types[0],
+                line_types=(n,c),
                 width=width
             ),
             weight=1.0,
-            lane_type= Lane_Type.ROAD
+            lane_type= LaneType.ROAD
         )
         
         net.add_lane(
-            "1", "0", 
+            "b", "a", 
             StraightLane(
                 [length, width/2], 
-                [0, width/2], 
-                line_types=line_types[1],
+                [0, width/2],
+                line_types=(n,n),
                 width=width
             ),
             weight=0.8,
-            lane_type= Lane_Type.ROAD
+            lane_type= LaneType.ROAD
         )
         
         # Create road with the network
@@ -83,41 +83,10 @@ class WeightedTwoWayEnv(TwoWayEnv):
             record_history=self.config.get("show_trajectories", False)
         )
 
-    def _reward(self, action: int) -> float:
-        """
-        Compute complex reward function.
-        
-        Args:
-            action (int): Taken action
-        
-        Returns:
-            float: Computed reward
-        """
-        reward = 0
-        
-        # Lane preference reward (based on lane weight)
-        lane_index = self.vehicle.lane_index
-        lane_weight = self.road.network.get_lane(lane_index).weight
-        reward += lane_weight
-        
-        # High-speed lane preference
-        forward_direction = self.vehicle.lane.direction
-        speed_reward = np.clip(
-            np.dot(self.vehicle.velocity, forward_direction) / 
-            self.config.get("max_speed", 30), 
-            0, 1
-        )
-        reward += speed_reward
-        
-        # Collision punishment
-        if self.vehicle.crashed:
-            reward -= 10
-        
-        return reward
-
+    @override
     def _rewards(self, action: int) -> Dict[str, float]:
         """
-        Compute detailed reward components.
+        Compute detailed reward components with emphasis on strategic overtaking.
         
         Args:
             action (int): Taken action
@@ -125,17 +94,43 @@ class WeightedTwoWayEnv(TwoWayEnv):
         Returns:
             Dict[str, float]: Reward components
         """
-        lane_index = self.vehicle.lane_index
-        lane_weight = self.road.network.get_lane(lane_index).weight
+        _, _, lane_index = self.vehicle.lane_index
+        
+        # Determine lane characteristics
+        is_left_lane = lane_index == 1  # Assuming lane 1 is the left lane
+        is_right_lane = lane_index == 0  # Assuming lane 0 is the right lane
+        
+        # Base velocity reward
+        speed_reward = np.clip(
+            np.dot(self.vehicle.velocity, self.vehicle.lane.direction) /
+            self.config.get("max_speed", 30),
+            0, 1
+        )
+        
+        # Overtaking reward
+        overtaking_reward = 0
+        if is_left_lane:
+            # Reward for being in the left lane (overtaking lane)
+            overtaking_reward = 0.5
+            
+            # Additional reward for speed difference if overtaking
+            speed_diff_reward = max(0, speed_reward - 0.5)
+            overtaking_reward += speed_diff_reward
+        
+        # Lane preference reward
+        lane_preference_reward = 1 if is_right_lane else 0.5
         
         rewards = {
-            "lane_reward": lane_weight,
-            "speed_reward": np.clip(
-                np.dot(self.vehicle.velocity, self.vehicle.lane.direction) / 
-                self.config.get("max_speed", 30), 
-                0, 1
-            ),
-            "collision_penalty": -10 if self.vehicle.crashed else 0
+            "lane_reward": lane_preference_reward,
+            "overtaking_reward": overtaking_reward,
+            "speed_reward": speed_reward,
+            "collision_penalty": -10 if self.vehicle.crashed else 0,
+            "total_reward": (
+                lane_preference_reward + 
+                overtaking_reward + 
+                speed_reward - 
+                (10 if self.vehicle.crashed else 0)
+            )
         }
         
         return rewards
@@ -143,7 +138,7 @@ class WeightedTwoWayEnv(TwoWayEnv):
 # Configuration example
 config = {
     "duration": 60,
-    "vehicles_count": 10,
+    "vehicles_count": 20,
     "max_speed": 30,
     "show_trajectories": False
 }
