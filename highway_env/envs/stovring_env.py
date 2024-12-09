@@ -94,7 +94,7 @@ class Stovring(AbstractEnv, WeightedUtils):
     def _make_road(self) -> None:
         """Create a road composed of straight adjacent lanes."""
 
-        net = RoadNetwork()
+        net = WeightedRoadnetwork()
         nb = NetworkBuilder()
         n, c, s = LineType.NONE, LineType.CONTINUOUS, LineType.STRIPED
         left_turn = False
