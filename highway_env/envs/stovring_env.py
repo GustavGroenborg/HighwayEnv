@@ -8,6 +8,7 @@ import numpy as np
 from highway_env import utils
 from highway_env.envs.common.abstract import AbstractEnv
 from highway_env.envs.common.action import Action
+from highway_env.envs.weighted_utils import WeightedUtils
 from highway_env.network_builder import CircularPath, NetworkBuilder, Path, StraightPath
 from highway_env.road.lanes.abstract_lanes import AbstractLane
 from highway_env.road.lanes.lane_utils import LaneType, LineType
