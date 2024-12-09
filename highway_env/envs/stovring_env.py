@@ -2119,6 +2119,7 @@ class Stovring(AbstractEnv, WeightedUtils):
             ),
             speed=speed + self.np_random.normal() * speed_deviation,
         )
+        vehicle.check_collision = False
         # Not adding the vehicle, if it is too close to another vehicle
         for v in self.road.vehicles:
             if np.linalg.norm(v.position - vehicle.position) < 15:
