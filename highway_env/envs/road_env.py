@@ -19,7 +19,7 @@ from highway_env.network_builder import NetworkBuilder, StraightPath, CircularPa
 from highway_env.road.lanes.unweighted_lanes import StraightLane, SineLane, CircularLane
 
 
-class HighwayCircuit(AbstractEnv):
+class RoadEnv(AbstractEnv):
     """
     A testing driving environment.
     """
@@ -35,7 +35,7 @@ class HighwayCircuit(AbstractEnv):
                 },
                 "action": {
                     "type": "DiscreteMetaAction",
-                    "target_speeds": np.linspace(0, 40, 10),
+                    "target_speeds": [-10, 0, 5, 10, 20] #np.linspace(0, 30, 10)
                 },
                 "simulation_frequency": 15,
                 "lanes_count": 2,
@@ -75,114 +75,58 @@ class HighwayCircuit(AbstractEnv):
         radius = 20
         lane_width = 4
         
+        """First highway circuit"""
         nb.add_multiple_nodes({
-            "a:1" : [0, 8],
-            "a:2" : [0, 12],
-            
-            "d:1" : [200, 8],
-            "d:2" : [200, 12],
-            
-            "e:1" : [228, -20],
-            "e:2" : [232, -20],
-            
-            "f:1" : [228, -220],
-            "f:2" : [232, -220],
-            
-            "g:1" : [200, -248],
-            "g:2" : [200, -252],
-            
-            "h:1" : [0, -248],
-            "h:2" : [0, -252],
-            
-            "i:1" : [-28, -220],
-            "i:2" : [-32, -220],
-            
-            "j:1" : [-28, -20],
-            "j:2" : [-32, -20],
-            
+            "a:1" : [0, 4],
+            "d:1" : [200, 4],
+            "e:1" : [224, -20],
+            "f:1" : [224, -220],
+            "g:1" : [200, -244],
+            "h:1" : [0, -244],
+            "i:1" : [-24, -220],
+            "j:1" : [-24, -20],
             
             "aa:1" : [0, 0],
-            "aa:2" : [0, 4],
-            
             "dd:1" : [200, 0],
-            "dd:2" : [200, 4],
-            
             "ee:1" : [220, -20],
-            "ee:2" : [224, -24],
-            
             "ff:1" : [220, -220],
-            "ff:2" : [224, -224],
-            
             "gg:1" : [200, -240],
-            "gg:2" : [200, -244],
-            
             "hh:1" : [0, -240],
-            "hh:2" : [0, -244],
-            
             "ii:1" : [-20, -220],
-            "ii:2" : [-24, -220],
-            
             "jj:1" : [-20, -20],
-            "jj:2" : [-24, -20],
         })
         
         """Counter clockwise circuit (outer ring)"""
         nb.add_multiple_paths({
             nb.PathType.STRAIGHT : [
-                StraightPath("a:1", "d:1", (c,s), nb.get_weight(200, 130), LaneType.HIGHWAY),
-                StraightPath("a:2", "d:2", (n,c), nb.get_weight(200, 130), LaneType.HIGHWAY),
-                
-                StraightPath("e:1", "f:1", (c,s), nb.get_weight(200, 130), LaneType.HIGHWAY),
-                StraightPath("e:2", "f:2", (n,c), nb.get_weight(200, 130), LaneType.HIGHWAY),
-                
-                StraightPath("g:1", "h:1", (c,s), nb.get_weight(200, 130), LaneType.HIGHWAY),
-                StraightPath("g:2", "h:2", (n,c), nb.get_weight(200, 130), LaneType.HIGHWAY),
-                
-                StraightPath("i:1", "j:1", (c,s), nb.get_weight(200, 130), LaneType.HIGHWAY),
-                StraightPath("i:2", "j:2", (n,c), nb.get_weight(200, 130), LaneType.HIGHWAY),
+                StraightPath("a:1", "d:1", (n,c), nb.get_weight(200, 80), LaneType.ROAD),
+                StraightPath("e:1", "f:1", (n,c), nb.get_weight(200, 80), LaneType.ROAD),
+                StraightPath("g:1", "h:1", (n,c), nb.get_weight(200, 80), LaneType.ROAD),
+                StraightPath("i:1", "j:1", (n,c), nb.get_weight(200, 80), LaneType.ROAD),
             ],
             nb.PathType.CIRCULAR : [
-                CircularPath("d:1", "e:1", 90, radius + 2 * lane_width, left_turn, (c,s), nb.get_weight(19, 130), LaneType.HIGHWAY),  
-                CircularPath("d:2", "e:2", 90, radius + 3 * lane_width, left_turn, (n,c), nb.get_weight(19, 130), LaneType.HIGHWAY),  
-
-                CircularPath("f:1", "g:1", 0, radius + 2 * lane_width, left_turn, (c,s), nb.get_weight(19, 130), LaneType.HIGHWAY),  
-                CircularPath("f:2", "g:2", 0, radius + 3 * lane_width, left_turn, (n,c), nb.get_weight(19, 130), LaneType.HIGHWAY),  
-
-                CircularPath("h:1", "i:1", -90, radius + 2 * lane_width, left_turn, (c,s), nb.get_weight(19, 130), LaneType.HIGHWAY),  
-                CircularPath("h:2", "i:2", -90, radius + 3 * lane_width, left_turn, (n,c), nb.get_weight(19, 130), LaneType.HIGHWAY),  
-
-                CircularPath("j:1", "a:1", 180, radius + 2 * lane_width, left_turn, (c,s), nb.get_weight(19, 130), LaneType.HIGHWAY),  
-                CircularPath("j:2", "a:2", 180, radius + 3 * lane_width, left_turn, (n,c), nb.get_weight(19, 130), LaneType.HIGHWAY),  
+                CircularPath("d:1", "e:1", 90, radius + 1 * lane_width, left_turn, (n,c), nb.get_weight(19, 80), LaneType.ROAD),  
+                CircularPath("f:1", "g:1", 0, radius + 1 * lane_width, left_turn, (n,c), nb.get_weight(19, 80), LaneType.ROAD),  
+                CircularPath("h:1", "i:1", -90, radius + 1 * lane_width, left_turn, (n,c), nb.get_weight(19, 80), LaneType.ROAD),  
+                CircularPath("j:1", "a:1", 180, radius + 1 * lane_width, left_turn, (n,c), nb.get_weight(19, 80), LaneType.ROAD),  
             ]
         })
         
-        """Clockwise circuit (inner ring)"""
         nb.add_multiple_paths({
             nb.PathType.STRAIGHT : [
-                StraightPath("dd:1", "aa:1", (n,c), nb.get_weight(200, 130), LaneType.HIGHWAY),
-                StraightPath("dd:2", "aa:2", (c,s), nb.get_weight(200, 130), LaneType.HIGHWAY),
+                StraightPath("dd:1", "aa:1", (s,c), nb.get_weight(200, 80), LaneType.ROAD),
                 
-                StraightPath("ff:1", "ee:1", (n,c), nb.get_weight(200, 130), LaneType.HIGHWAY),
-                StraightPath("ff:2", "ee:2", (c,s), nb.get_weight(200, 130), LaneType.HIGHWAY),
+                StraightPath("ff:1", "ee:1", (s,c), nb.get_weight(200, 80), LaneType.ROAD),
                 
-                StraightPath("hh:1", "gg:1", (n,c), nb.get_weight(200, 130), LaneType.HIGHWAY),
-                StraightPath("hh:2", "gg:2", (c,s), nb.get_weight(200, 130), LaneType.HIGHWAY),
+                StraightPath("hh:1", "gg:1", (s,c), nb.get_weight(200, 80), LaneType.ROAD),
                 
-                StraightPath("jj:1", "ii:1", (n,c), nb.get_weight(200, 130), LaneType.HIGHWAY),
-                StraightPath("jj:2", "ii:2", (c,s), nb.get_weight(200, 130), LaneType.HIGHWAY),
+                StraightPath("jj:1", "ii:1", (s,c), nb.get_weight(200, 80), LaneType.ROAD),
             ],
             nb.PathType.CIRCULAR : [
-                CircularPath("ee:1", "dd:1", 180, radius + 0 * lane_width, right_turn, (n,c), nb.get_weight(19, 130), LaneType.HIGHWAY),  
-                CircularPath("ee:2", "dd:2", 180, radius + 1 * lane_width, right_turn, (c,s), nb.get_weight(19, 130), LaneType.HIGHWAY),  
-
-                CircularPath("gg:1", "ff:1", 90, radius + 0 * lane_width, right_turn, (n,c), nb.get_weight(19, 130), LaneType.HIGHWAY),  
-                CircularPath("gg:2", "ff:2", 90, radius + 1 * lane_width, right_turn, (c,s), nb.get_weight(19, 130), LaneType.HIGHWAY),  
-
-                CircularPath("ii:1", "hh:1", 0, radius + 0 * lane_width, right_turn, (n,c), nb.get_weight(19, 130), LaneType.HIGHWAY),  
-                CircularPath("ii:2", "hh:2", 0, radius + 1 * lane_width, right_turn, (c,s), nb.get_weight(19, 130), LaneType.HIGHWAY),  
-
-                CircularPath("aa:1", "jj:1", -90, radius + 0 * lane_width, right_turn, (n,c), nb.get_weight(19, 130), LaneType.HIGHWAY),  
-                CircularPath("aa:2", "jj:2", -90, radius + 1 * lane_width, right_turn, (c,s), nb.get_weight(19, 130), LaneType.HIGHWAY),  
+                CircularPath("ee:1", "dd:1", 180, radius + 0 * lane_width, right_turn, (s,c), nb.get_weight(19, 80), LaneType.ROAD),  
+                CircularPath("gg:1", "ff:1", 90, radius + 0 * lane_width, right_turn, (s,c), nb.get_weight(19, 80), LaneType.ROAD),  
+                CircularPath("ii:1", "hh:1", 0, radius + 0 * lane_width, right_turn, (s,c), nb.get_weight(19, 80), LaneType.ROAD),  
+                CircularPath("aa:1", "jj:1", -90, radius + 0 * lane_width, right_turn, (s,c), nb.get_weight(19, 80), LaneType.ROAD),  
             ]
         })
         
