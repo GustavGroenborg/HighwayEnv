@@ -24,6 +24,11 @@ def _register_highway_envs():
 
     from highway_env.envs.common.abstract import MultiAgentWrapper
 
+    register(
+        id="highway-circuit",
+        entry_point="highway_env.envs:HighwayCircuit",
+    )
+
     # Stovring - by Tosuma
     register(
         id="stovring",
