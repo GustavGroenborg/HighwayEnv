@@ -237,13 +237,14 @@ class HighwayCircuit(AbstractEnv):
                 self.road.vehicles.remove(v)
 
         
-    # Note this reward function is just generic from another template
     def _reward(self, action: Action) -> float:
         """
         The reward is defined to foster driving at high speed, on the rightmost lanes, and to avoid collisions.
         :param action: the last action performed
         :return: the corresponding reward
         """
+        MIN_REWARD = -1
+        MAX_REWARD = 2.1
         rewards = self._rewards(action)
         reward = sum(
             self.config.get(name, 0) * reward for name, reward in rewards.items()
@@ -252,16 +253,16 @@ class HighwayCircuit(AbstractEnv):
             reward = utils.lmap(
                 reward,
                 [
-                    self.config["collision_reward"],
-                    self.config["high_speed_reward"] + self.config["right_lane_reward"],
+                    MIN_REWARD,
+                    MAX_REWARD,
                 ],
                 [0, 1],
             )
-        reward *= rewards["on_road_reward"]
-        
+
+        if self.config["normalize_reward"]:
+            reward = np.clip(reward, 0, 1)
         return reward
 
-    # Note this reward function is just generic from another template
     def _rewards(self, action: Action) -> dict[str, float]:
         neighbours = self.road.network.all_side_lanes(self.vehicle.lane_index)
         lane = (
@@ -278,7 +279,6 @@ class HighwayCircuit(AbstractEnv):
             "collision_reward": float(self.vehicle.crashed),
             "right_lane_reward": lane / max(len(neighbours) - 1, 1),
             "high_speed_reward": np.clip(scaled_speed, 0, 1),
-            "on_road_reward": float(self.vehicle.on_road),
         }
     
     def _is_terminated(self) -> bool:
