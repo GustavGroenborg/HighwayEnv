@@ -34,20 +34,15 @@ def _register_highway_envs():
         entry_point="highway_env.envs:HighwayCircuit",
     )
 
-    # Stovring - by Tosuma
     register(
         id="stovring",
         entry_point="highway_env.envs:Stovring",
     )
 
+    register(id="template", entry_point="highway_env.envs:Template")
+
     register(
-        id="template",
-        entry_point="highway_env.envs:Template"
-    )
-    
-    register(
-        id="weighted-highway-v0",
-        entry_point="highway_env.envs:WeightedHighwayEnv"
+        id="weighted-highway-v0", entry_point="highway_env.envs:WeightedHighwayEnv"
     )
 
     register(
@@ -59,32 +54,21 @@ def _register_highway_envs():
         id="weighted-roundabout-v0",
         entry_point="highway_env.envs:WeightedRoundaboutEnv",
     )
-    
-    # Carpet city - by Tosuma
-    register(
-        id="carpet-city",
-        entry_point="highway_env.envs:CarpetCity"
-    )
-    
-    # Homemade highway refactor - by Tosuma
-    register(
-        id="homemade-highway-refactor",
-        entry_point="highway_env.envs:Template"
-    )
 
-    # Homemade city - by Tosuma
+    register(id="carpet-city", entry_point="highway_env.envs:CarpetCity")
+
+    register(id="homemade-highway-refactor", entry_point="highway_env.envs:Template")
+
     register(
         id="homemade-city",
         entry_point="highway_env.envs.homemade_city_env:HomemadeCity",
     )
 
-    # Homemade highway - by Tosuma
     register(
         id="homemade-highway",
         entry_point="highway_env.envs.homemade_highway_env:HomemadeHighway",
     )
 
-    # Homemade racetrack - by Tosuma
     register(
         id="homemade-racetrack",
         entry_point="highway_env.envs.homemade_racetrack_env:HomemadeRacetrack",
