@@ -25,6 +25,16 @@ def _register_highway_envs():
     from highway_env.envs.common.abstract import MultiAgentWrapper
 
     register(
+        id="road-env",
+        entry_point="highway_env.envs:RoadEnv",
+    )
+
+    register(
+        id="highway-circuit",
+        entry_point="highway_env.envs:HighwayCircuit",
+    )
+
+    register(
         id="stovring",
         entry_point="highway_env.envs:Stovring",
     )
